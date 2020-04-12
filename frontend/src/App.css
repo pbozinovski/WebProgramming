@@ -1,0 +1,41 @@
+.card {
+  margin: 30px;
+}
+
+.icon{
+  margin-right:5px;
+}
+
+.icon span{
+  padding:0 10px;
+}
+
+.width{
+  width:120px;
+}
+
+#login{
+  margin:0 auto;
+  margin-top:50px;
+  width:25%;
+  padding:20px;
+  background: lightgray;
+}
+
+#login h3{
+  color:gray;
+}
+
+#placeInput::placeholder{
+  color:white;
+}
+
+.item a:link{
+  text-decoration: none;
+}
+.item a:hover{
+  color: black;
+}
+.item a{
+  color: black;
+}
