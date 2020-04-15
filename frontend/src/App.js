@@ -91,11 +91,9 @@ function App() {
   const updateProduct = (product) => {
     const newProduct = { name: product.productName, quantity: product.productQuantity, price: product.productPrice, brand: product.productBrand, description: product.productDescription, type: product.productType, image: product.productImage }
     const newProduct2 = { productId: product.productId, productName: product.productName, productQuantity: product.productQuantity, productPrice: product.productPrice, productBrand: product.productBrand, productDescription: product.productDescription, productType: product.productType, productImage: product.productImage }
-    const items = products.filter(i => i.productId !== product.productId);
-    setProducts([...items, newProduct2]);
+    setProducts(products.map(i => i.productId === newProduct2.productId ? newProduct2 : i));
     const newdata = qs.stringify(newProduct);
     const id = product.productId;
-    console.log(id);
     axios.patch(`http://localhost:8080/api/products/${id}`, newdata, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

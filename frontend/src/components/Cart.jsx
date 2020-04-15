@@ -26,7 +26,7 @@ const Cart = ({ items, removeItem, buyItems }) => {
                                 <td>{i.productId}</td>
                                 <td>{i.productName}</td>
                                 <td>{i.productQuantity}</td>
-                                <td>{i.productPrice}</td>
+                                <td>{i.productPrice.toString().substr(0,2) + ','+ i.productPrice.toString().substr(2, 3)+" den"}</td>
                                 <td>
                                     <button onClick={() => removeItem(i.productId)} className="btn btn-sm btn-outline-secondary ml-3">
                                         <span className="fa fa-remove" />
@@ -50,7 +50,7 @@ const Cart = ({ items, removeItem, buyItems }) => {
                 </tbody>
             </table>
             <div className="d-flex justify-content-between">
-                <h4>{price !== 0 ? "Your total is: " + price : "The cart is empty"}</h4>
+                <h4>{price !== 0 ? "Your total is: " + (price < 100000 ? price.toString().substr(0,2) + ','+ price.toString().substr(2, 3)+" den." : price.toString().substr(0,3) + ','+ price.toString().substr(3, 3)+" den."): 'The cart is empty'}</h4>
                 <button disabled={price === 0} className="btn btn-sm width btn-primary" onClick={() =>buyItems(price)}>
                     <span className="fa fa-edit" />
                     <span>

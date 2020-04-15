@@ -59,14 +59,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(Integer id, String name, Integer quantity, Double price, String brand, String type, String image) {
+    public void updateProduct(Integer id, String name, Integer quantity, Double price, String brand, String type, String image) {
         Product product = this.repository.findById(id).orElseThrow(InvalidProductIdException::new);
+
         product.setProductName(name);
         product.setProductQuantity(quantity);
         product.setProductPrice(price);
         product.setProductBrand(brand);
         product.setProductType(type);
         product.setProductImage(image);
-        return this.repository.save(product);
+        repository.save(product);
     }
 }

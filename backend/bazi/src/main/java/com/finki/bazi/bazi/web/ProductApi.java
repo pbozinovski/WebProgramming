@@ -41,8 +41,8 @@ public class ProductApi {
     }
 
     @PatchMapping("/{id}")
-    public Product updateProduct(@PathVariable Integer id, @RequestParam("name") String name, @RequestParam("quantity") Integer quantity, @RequestParam("price") Double price, @RequestParam("brand") String brand, @RequestParam("description") String description,@RequestParam("type") String type,@RequestParam("image") String image){
-        return service.updateProduct(id, name, quantity, price, brand, type, image);
+    public void updateProduct(@PathVariable Integer id, @RequestParam("name") String name, @RequestParam("quantity") Integer quantity, @RequestParam("price") Double price, @RequestParam("brand") String brand, @RequestParam("description") String description,@RequestParam("type") String type,@RequestParam("image") String image){
+        service.updateProduct(id, name, quantity, price, brand, type, image);
     }
     @DeleteMapping("/{id}")
     public void removeProduct(@PathVariable int id) {

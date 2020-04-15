@@ -10,7 +10,7 @@ const AdminProducts = ({ products, remove, update, add }) => {
         productBrand: '',
         productDescription: '',
         productType: '',
-        productImage: '',
+        productImage: ''
     });
 
     const [edit, setEdit] = useState(false);
@@ -26,10 +26,11 @@ const AdminProducts = ({ products, remove, update, add }) => {
             setEdit(true);
             console.log(items);
         })
-    }
+    };
 
     const handleSubmit = e => {
         e.preventDefault();
+
         if (items.productName === '' || items.productQuantity === '' || items.productPrice === '' ||
             items.productBrand === '' || items.productDescription === '' || items.productType === '' ||
             items.productImage === '') {
@@ -40,6 +41,15 @@ const AdminProducts = ({ products, remove, update, add }) => {
             } else {
                 add(items);
             }
+            setItems({
+                productName: '',
+                productQuantity: '',
+                productPrice: '',
+                productBrand: '',
+                productDescription: '',
+                productType: '',
+                productImage: ''
+            });
         }
 
     }
@@ -63,7 +73,7 @@ const AdminProducts = ({ products, remove, update, add }) => {
                     <label htmlFor="type">Enter type:</label>
                     <input onChange={handleChange} type="text" className="form-control" value={items.productType} name="productType" id="type"></input>
                     <label htmlFor="image">Enter image:</label>
-                    <input onChange={handleChange} placeholder="ex: ../images/imgMB.png"type="text" className="form-control" value={items.productImage} name="productImage" id="image"></input>
+                    <input onChange={handleChange} placeholder="ex: ../images/imgMB.png" type="text" className="form-control" value={items.productImage} name="productImage" id="image"></input>
                 </div>
 
 

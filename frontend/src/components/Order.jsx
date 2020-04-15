@@ -51,7 +51,6 @@ const Order = ({ user }) => {
             axios.get(`http://localhost:8080/api/clients/${id}`).then(response => {
                 setClient(response.data);
                 console.log("Data called!");
-                console.log(response.data, "test");
                 setLoading(false);
             });
 
@@ -79,14 +78,14 @@ const Order = ({ user }) => {
                                     {
                                         order.products.map(product => {
                                             return (
-                                                <li className="list-group-item" key={product.productId}>{product.productName + "  -  " + product.productPrice}</li>
+                                                <li className="list-group-item" key={product.productId}>{product.productName + "  -  " + product.productPrice.toString().substr(0,2) + ','+ product.productPrice.toString().substr(2, 3)+" den"}</li>
                                             )
                                         })
 
                                     }
 
 
-                                    <li className="list-group-item list-group-item-success">Total: {order.payment.paymentPrice}</li>
+                                    <li className="list-group-item list-group-item-success">Total: {order.payment.paymentPrice < 100000 ? order.payment.paymentPrice.toString().substr(0,2) + ','+ order.payment.paymentPrice.toString().substr(2, 3)+" den" : order.payment.paymentPrice.toString().substr(0,3) + ','+ order.payment.paymentPrice.toString().substr(3, 3)+" den"}</li>
                                 </ul>
                                 <br />
                             </div>

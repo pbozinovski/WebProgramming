@@ -11,13 +11,16 @@ const ProductItem = ({ product, addToCart, user }) => {
                     <img style={{width:'15rem'}} src={product.productImage} className="card-img-top" alt="..." />
                     <div className="card-body">
                         <h5 className="card-title">{product.productName}</h5>
-                        <p className="card-text">Price: {product.productPrice} </p>
+                        <p className="card-text">Price: {product.productPrice.toString().substr(0,2) + ','+ product.productPrice.toString().substr(2, 3)+" den"} </p>
                         <p className="card-text">Brand: {product.productBrand} </p>
                         <p className="card-text">Quantity: {product.productQuantity} </p>
 
                     </div>
                 </Link>
-                        <button disabled={!user} className="btn btn-primary" onClick={() => addToCart(product.productId)}>Add to cart</button>
+                {user ? <button disabled={!user} className="btn btn-success" onClick={() => addToCart(product.productId)}><span className="fa fa-cart-plus"></span> Add to cart</button> :
+                <button disabled={!user} className="btn btn-secondary" onClick={() => addToCart(product.productId)}>Login required</button>
+                }
+                        
             </div>
         </div>
 
