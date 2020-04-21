@@ -13,5 +13,5 @@ public interface OrderService {
     List<Order> getAllOrders();
     List<OrderDTO> getAllOrdersDTO();
     OrderDTO getById(Long id);
-    void addOrder(Long id, String date, List<Product> products, Client client, Payment payment);
+    void addOrder(String date, List<Product> products, Client client, Payment payment);
 }

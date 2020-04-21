@@ -21,10 +21,11 @@ const Header = ({ length, logout, auth, admin }) => {
                         </li>
                     </ul>
                     <form className="form-inline mt-2 mt-md-0 ml-3">
-                        {admin ? <Link to="/admin" className="btn btn-outline-info my-2 my-sm-0 icon" href="#">AdminPage</Link> : null}
+                        {admin ? <Link to="/admin" className="btn btn-outline-warning my-2 my-sm-0 icon" href="#">AdminPage</Link> : null}
                         <Link to="/cart" className="btn btn-outline-info my-2 my-sm-0 icon" href="#"><span className="fa fa-shopping-cart"></span>{length}</Link>
                         {
-                            auth === false ? <Link to="/login" className="btn btn-outline-info my-2 my-sm-0 icon" href="#">Login</Link> : <Link to="/" onClick={logout} className="btn btn-outline-info my-2 my-sm-0 icon" >Logout</Link>
+                            auth === false ? <Link to="/login" className="btn btn-outline-info my-2 my-sm-0 icon" href="#">Login</Link> :
+                             <Link to="/" onClick={logout} className="btn btn-outline-info my-2 my-sm-0 icon" >Logout</Link>
                         }
                     </form>
                 </div>

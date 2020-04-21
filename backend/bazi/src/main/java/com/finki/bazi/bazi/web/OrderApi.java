@@ -42,6 +42,6 @@ public class OrderApi {
 //@RequestParam("id") Long id, @RequestParam("date") Date date,
     @PostMapping
     public void addOrder(@RequestBody Order order) {
-        orderService.addOrder(order.getOrderId(), order.getOrderDate(), order.getProducts(), order.getClient(), order.getPayment());
+        orderService.addOrder(order.getOrderDate(), order.getProducts(), order.getClient(), order.getPayment());
     }
 }

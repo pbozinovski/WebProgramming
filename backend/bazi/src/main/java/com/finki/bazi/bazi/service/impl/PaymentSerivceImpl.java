@@ -15,8 +15,8 @@ public class PaymentSerivceImpl implements PaymentService {
     }
 
     @Override
-    public void addPayment(Long id, Integer price) {
-        Payment payment = new Payment(id, price);
-        repository.save(payment);
+    public Payment addPayment(Integer price) {
+        Payment payment = new Payment(price);
+        return repository.save(payment);
     }
 }

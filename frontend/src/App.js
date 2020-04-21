@@ -119,26 +119,46 @@ function App() {
   console.log(products);
   //BUY ALL ITEMS FROM CART
   const buyItems = (price) => {
-
-    const data = {id: Math.floor(Math.random() * 100000), price: price};
+    //MAKE A PAYMENT
+    const data = { price: price };
     const newdata = qs.stringify(data);
     axios.post(`http://localhost:8080/api/payments`, newdata, {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
-    })
-    const newData = {paymentId: data.id, paymentPrice: data.price};
-    //const newProduct = { id: cartItems.productId, name: cartItems.productName, quantity: cartItems.productQuantity, price: cartItems.productPrice, brand: cartItems.productBrand, description: cartItems.productDescription, type: cartItems.productType, image: cartItems.productImage};
-    const newProduct = { orderId: Math.floor(Math.random() * 100000), orderDate: Date(Date.now()), products: cartItems, client: user, payment: newData}
-    //const newdata = qs.stringify(newProduct);
-    axios.post(`http://localhost:8080/api/orders`, newProduct, {
+    }).then(response => {
+      const order = {
+        orderDate: Date(Date.now()),
+        products: cartItems,
+        client: user,
+        payment: response.data
+      }
+
+      axios.post(`http://localhost:8080/api/orders`, order, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+    });
+
+    //MAKE AN ORDER
+
+
+
+    //UPDATE QUANTITY ON FRONT
+    setCartItems(cartItems.map(item => item.productQuantity -= 1));
+    cartItems.map(item => setProducts((prev) =>
+      prev.map(product => product.productId === item.productId ? item : product)));
+    //console.log("test", list);
+
+    //UPDATE QUANTITY ON BACK
+    axios.patch(`http://localhost:8080/api/products/quantity`, cartItems, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
 
-    
-    console.log(cartItems);
+    //console.log(cartItems);
     setCartItems([]);
   }
 
@@ -185,23 +205,23 @@ function App() {
   }, [admin, user])
 
   return (
-    
-      <div className="App">
-        <Header logout={logout} admin={admin} auth={auth} length={cartItems.length} />
-        <Switch>
-          <ProtectedRoute path="/admin" products={products} remove={remove} update={updateProduct} add={addProduct} admin={admin} component={AdminPage}></ProtectedRoute>
-          <Route path="/" exact><Home user={user} addReview={addReview} /></Route>
-          <Route path="/products" exact><Products products={products} user={user} addToCart={addToCart} loading={loading} /></Route>
-          <Route path="/cart"><Cart items={cartItems} removeItem={removeItem} buyItems={buyItems} /></Route>
-          <Route path="/login"><Login login={login}></Login></Route>
-          <Route path="/register"><Register addClient={addClient}></Register></Route>
-          <Route path="/products/:id/details"><ProductDetails addReview={addReview} user={user} /></Route>
-          <Route path="/orders"><Order user={user} /></Route>
 
-          <Route path="/forbid"><AccessDenied></AccessDenied></Route>
-          <Route><Home /></Route>
-        </Switch>
-      </div>
+    <div className="App">
+      <Header logout={logout} admin={admin} auth={auth} length={cartItems.length} />
+      <Switch>
+        <ProtectedRoute path="/admin" products={products} remove={remove} update={updateProduct} add={addProduct} admin={admin} component={AdminPage}></ProtectedRoute>
+        <Route path="/" exact><Home user={user} addReview={addReview} /></Route>
+        <Route path="/products" exact><Products products={products} user={user} addToCart={addToCart} loading={loading} /></Route>
+        <Route path="/cart"><Cart items={cartItems} removeItem={removeItem} buyItems={buyItems} /></Route>
+        <Route path="/login"><Login login={login}></Login></Route>
+        <Route path="/register"><Register addClient={addClient}></Register></Route>
+        <Route path="/products/:id/details"><ProductDetails addReview={addReview} user={user} /></Route>
+        <Route path="/orders"><Order user={user} /></Route>
+
+        <Route path="/forbid"><AccessDenied></AccessDenied></Route>
+        <Route><Home /></Route>
+      </Switch>
+    </div>
 
   );
 }

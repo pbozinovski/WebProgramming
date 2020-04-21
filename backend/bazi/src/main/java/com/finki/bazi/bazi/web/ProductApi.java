@@ -1,6 +1,7 @@
 package com.finki.bazi.bazi.web;
 
 import com.finki.bazi.bazi.dto.ProductDTO;
+import com.finki.bazi.bazi.model.Order;
 import com.finki.bazi.bazi.model.Product;
 import com.finki.bazi.bazi.model.Review;
 import com.finki.bazi.bazi.service.ProductService;
@@ -44,6 +45,13 @@ public class ProductApi {
     public void updateProduct(@PathVariable Integer id, @RequestParam("name") String name, @RequestParam("quantity") Integer quantity, @RequestParam("price") Double price, @RequestParam("brand") String brand, @RequestParam("description") String description,@RequestParam("type") String type,@RequestParam("image") String image){
         service.updateProduct(id, name, quantity, price, brand, type, image);
     }
+
+    @PatchMapping("/quantity")
+    public void updateProductsQuantity(@RequestBody List<Product> products) {
+        service.updateProductsQuantity(products);
+    }
+
+
     @DeleteMapping("/{id}")
     public void removeProduct(@PathVariable int id) {
         this.service.deleteProduct(id);

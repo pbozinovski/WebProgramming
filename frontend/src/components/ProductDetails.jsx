@@ -98,7 +98,7 @@ const ProductDetails = ({ addReview, user }) => {
                         <h5>{product.productName}</h5>
                         <p>{product.productDescription}</p>
                         <p>Brand: {product.productBrand}</p>
-                        <p>Quantity of the item: {product.productQuantity}</p>
+                        <p>Availability: {product.productQuantity > 0 ? <span className="text-success fa fa-check"></span> : <span className="text-danger fa fa-times"></span>}</p>
                         <p>The price of the product: {product.productPrice.toString().substr(0, 2) + ',' + product.productPrice.toString().substr(2, 3) + " den"}</p>
                         <Link to="/products" className="btn btn-info">Go to products</Link>
                     </div>

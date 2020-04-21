@@ -79,7 +79,7 @@ const AdminProducts = ({ products, remove, update, add }) => {
 
                 {edit ? <button onClick={() => handleSubmit} className="btn btn-secondary btn-block">Edit Product</button> : <button onClick={() => handleSubmit} className="btn btn-secondary btn-block">Add Product</button>}
             </form>
-
+            <br/>
             <h4 className="text-upper text-left">ADMIN Products</h4>
             <table className="table table-striped">
                 <thead>
@@ -109,14 +109,14 @@ const AdminProducts = ({ products, remove, update, add }) => {
                                     <button onClick={() => { remove(i.productId) }} className="btn btn-block btn-outline-danger ml-3">
                                         <span className="fa fa-remove" />
                                         <span>
-                                            <strong>Remove</strong>
+                                            <strong> Remove</strong>
                                         </span>
                                     </button>
 
                                     <a href="#top" onClick={() => handleEdit(i.productId)} className="btn btn-block btn-outline-success ml-3">
                                         <span className="fa fa-edit" />
                                         <span>
-                                            <strong>Update</strong>
+                                            <strong> Update</strong>
                                         </span>
                                     </a>
                                 </td>

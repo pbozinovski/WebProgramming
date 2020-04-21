@@ -55,8 +55,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void addOrder(Long id, String date, List<Product> products, Client client, Payment payment) {
-        Order order = new Order(id, date, products, client, payment);
+    public void addOrder(String date, List<Product> products, Client client, Payment payment) {
+        Order order = new Order(date, products, client, payment);
         repository.save(order);
     }
 }

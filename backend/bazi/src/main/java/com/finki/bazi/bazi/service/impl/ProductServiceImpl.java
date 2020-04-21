@@ -70,4 +70,14 @@ public class ProductServiceImpl implements ProductService {
         product.setProductImage(image);
         repository.save(product);
     }
+
+    @Override
+    public void updateProductsQuantity(List<Product> products) {
+        for (Product product:products
+        ) {
+            Product updatedProduct = this.repository.findById(product.getProductId()).orElseThrow(InvalidProductIdException::new);
+            updatedProduct.setProductQuantity(product.getProductQuantity());
+            repository.save(updatedProduct);
+        }
+    }
 }

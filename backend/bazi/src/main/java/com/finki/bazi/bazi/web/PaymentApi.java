@@ -1,5 +1,6 @@
 package com.finki.bazi.bazi.web;
 
+import com.finki.bazi.bazi.model.Payment;
 import com.finki.bazi.bazi.service.PaymentService;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class PaymentApi {
     }
 
     @PostMapping
-    public void addPayment(@RequestParam("id") Long id, @RequestParam("price") Integer price) {
-        service.addPayment(id, price);
+    public Payment addPayment(@RequestParam("price") Integer price) {
+        return service.addPayment(price);
     }
 }
 

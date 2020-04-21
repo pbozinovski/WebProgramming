@@ -13,7 +13,7 @@ const Cart = ({ items, removeItem, buyItems }) => {
                     <tr>
                         <th scope="col">Product id</th>
                         <th scope="col">Product name</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Brand</th>
                         <th scope="col">Price</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -25,7 +25,7 @@ const Cart = ({ items, removeItem, buyItems }) => {
                             <tr key={i.productId}>
                                 <td>{i.productId}</td>
                                 <td>{i.productName}</td>
-                                <td>{i.productQuantity}</td>
+                                <td>{i.productBrand}</td>
                                 <td>{i.productPrice.toString().substr(0,2) + ','+ i.productPrice.toString().substr(2, 3)+" den"}</td>
                                 <td>
                                     <button onClick={() => removeItem(i.productId)} className="btn btn-sm btn-outline-secondary ml-3">
